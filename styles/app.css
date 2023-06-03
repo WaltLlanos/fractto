@@ -1,0 +1,97 @@
+@import "general.css";
+
+/* :root {
+  --purple-light-1: #FBFAFB;
+  --purple-light-2: #EEEAF2;
+  --purple-medium-1: #AA83C8;
+  --purple-medium-2: #8B48BF;
+  --purple-medium-3: #5C218A;
+  --purple-dark-1: #3E0F64;
+  --purple-dark-2: #2A0646;
+
+  --yellow: #EECC75;
+  --green: #CAD297;
+  --aqua: #B7EAC5;
+  --lightBlue: #A2EEE5;
+  --darkBlue: #8EA2EA;
+  --red: #F09D9D;
+
+  --font-family-titles: 'Dosis', sans-serif;
+  --font-family-text: 'Red Hat Display', sans-serif;
+  --font-weight-title1: 800;
+  --font-weight-title2: 700;
+  --font-weight-text1: 400;
+  --font-weight-text2: 500;
+} */
+
+
+/* Header */
+
+.header-container {
+  height: 70px;
+  width: 100%;
+
+}
+
+.section-container {
+  padding: 30px 20px 0px 20px;
+  text-align: center;
+}
+
+.section-title{
+text-align: left;
+}
+
+.header-grid {
+  background-color: var(--purple-medium-1);
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.header-item1 {
+  display: inline-grid;
+  grid-area: 1/1;
+}
+.header-item2 {
+  display: inline-grid;
+  color: var(--purple-light-2);
+  grid-area: 1/2;
+}
+.header-item3 {
+  display: inline-grid;
+  grid-area: 1/3;
+}
+
+.table-link{
+  background-color: var(--purple-light-2);
+  height: 40px;
+  line-height: 40px;
+  border-radius: 10px;
+}
+
+.list-avatar {
+  display: flex;
+  list-style-type:none
+}
+
+.select-profiles {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+
+.list-pagos {
+  display: flex;
+  list-style-type:none
+}
+
+.select-method {
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}

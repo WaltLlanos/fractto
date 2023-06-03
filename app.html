@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dosis:wght@700;800&family=Red+Hat+Display:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles/general.css" />
+    <link rel="stylesheet" href="./styles/app.css" />
+
+    <title>Fractto: Split the bill, fast.</title>
+</head>
+<body>
+    <section id="header" class="header-container">
+        <div class="header-grid">
+            <img class="header-item1"/>
+            <h1 class="header-item2">/mesadewalt</h1>
+            <div class="header-item3">
+                <img/>
+            </div>
+        </div>
+    </section>
+    <section id="tableShare" class="section-container ">
+        <h3>¡Excelente!, ya tienes una mesa.</h3>
+        <p>Invita a tus amigos a tu mesa compartiendo el siguiente link:</p>
+        <div class="table-link">
+            <span>https://www.fractto.co/MesaDeWalt</span>
+        </div>
+        <button>Compartir</button>
+    </section>
+    <section id="userInfo" class="section-container ">
+        <div class="section-title">
+            <h2>Tu Información:</h2>
+        </div>
+        <hr>
+        <form>
+            <p>¿Cual es tu nombre?</p>
+            <input type="hidden" value="si" id="jefe_mesa">
+            <input type="hidden" value="" id="id_mesa">
+            <input autocomplete="off" type="text" placeholder="" name="nombre" id="nombre" required>
+            <p>Escoge tu ávatar para identificarte:</p>
+            <ul class="list-avatar">
+                <li><input class="select-profiles avatar1" type="radio" name="avatar" value="avatar1" required></li>
+                <li><input class="select-profiles avatar2" type="radio" name="avatar" value="avatar2" required></li>
+                <li><input class="select-profiles avatar3" type="radio" name="avatar" value="avatar3" required></li>
+                <li><input class="select-profiles avatar4" type="radio" name="avatar" value="avatar4" required></li>
+            </ul>
+            <p>¿Como prefieres realizar tu pago hoy?</p>
+            <ul class="list-pagos">
+                <li><input class="select-method method1" type="radio" name="method" value="method1" required></li>
+                <li><input class="select-method method2" type="radio" name="method" value="method2" required></li>
+                <li><input class="select-method method3" type="radio" name="method" value="method3" required></li>
+                <li><input class="select-method method4" type="radio" name="method" value="method4" required></li>
+            </ul>
+            <input type="submit" id="submitClient" style="display:none;">
+        </form>
+        <div class="arrow-btn-container">
+            <div class="arrow-btn">
+                <span class="arrow">></span>
+            </div>
+        </div>
+    </section>
+    <section id="tableFill" class="section-container inactive">
+        <div class="col-12 content text-center float-left">
+            <h3 class="tlt-h5">¡Tienes compañía!</h3>
+            <p class="col-12 sin-padding float-left">Verifica que nadie haga falta antes de continuar</p>
+            <div class="list-check">
+                <div class="top-listCheck float-left">
+                    <div class="section-title">
+                        <h2>Tu Mesa:</h2>
+                    </div>
+                    <hr>
+                    <div onclick="popAddFriends();" class="icon-addFriends">
+                        <img src="">
+                    </div>
+                </div>
+                <ul id="datagrid">
+                    
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="userOrder" class="section-container inactive">
+        <div class="col-12 content text-center float-left">
+            <div class="fraccion">
+                <div class="col-12 information float-left">
+                    <h5 class="col-6">Tu Fracción:</h5><span class="resultFactura price">$0</span>
+                    <hr>
+                    <form class="formFactura float-left" id="form-consultar-factura" onclick="contandoFactura();" style="width:100%;">
+                        <div class="col-12 float-left">
+                            <div class="row">
+                                <div class="col-6">
+                                    <ul class="in-fraccion">
+                                        <li><img src=""><label>Entrada:</label></li>
+                                        <li><img src=""><label>Plato Fuerte:</label></li>
+                                        <li><img src=""><label>Bebida:</label></li>
+                                        <li><img src=""><label>Postre:</label></li>
+                                        <li><img src=""><label>Propina:</label></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <form class="result-fraccion">
+                                        <input class="text text-right" min="0" id="entrada" type="number" value="" placeholder="$0">
+                                        <input class="text text-right" min="0" id="plato" type="number" value="" placeholder="$0">
+                                        <input class="text text-right" min="0" id="bebidas" type="number" value="" placeholder="$0">
+                                        <input class="text text-right" min="0" id="postre" type="number" value="" placeholder="$0">
+                                        <div class="propina">
+                                            <div class="porcentaje"><img src=""></div>
+                                            <input class="text text-right" min="0" id="propina" value="" type="number" placeholder="$0">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-12 information float-left">
+                    <h5 class="col-6">Tu Billetera:</h5><span class="price totalBilletera">$0</span>
+                    <hr>
+                    <form class="formFactura float-left" id="form-consultar-billetera" onclick="contandoBilletera();" style="width:100%;">
+                    <ul class="list-billetera">
+                        <li><img src=""><input value="0" min="0" id="conteo1" class="inpBilletes" type="number"></li>
+                        <li><img src=""><input value="0" min="0" id="conteo2" class="inpBilletes" type="number"></li>
+                        <li><img src=""><input value="0" min="0" id="conteo3" class="inpBilletes" type="number"></li>
+                        <li><img src=""><input value="0" min="0" id="conteo4" class="inpBilletes" type="number"></li>
+                    </ul>
+                    <ul class="list-billetera">
+                        <li><img src=""><input value="0" min="0" id="conteo5" class="inpBilletes" type="number"></li>
+                        <li><img src=""><input value="0" min="0" id="conteo6" class="inpBilletes" type="number"></li>
+                        <li><img src=""><input value="0" min="0" id="conteo7" class="inpBilletes" type="number"></li>
+                        <li><img src=""><input id="monedas" class="inpBilletes" type="checkbox" value="si" onclick="valorMoneda();"></li>
+                    </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="guestOwner" class="section-container inactive">
+        <div class="col-12 content text-center float-left">
+            <div class="list-check">
+                <h6>¿Pagarás por alguien mas?</h6>
+                <ul class="list-payup" id="list-payup">
+                    
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section id="tableSummary" class="section-container inactive">
+        <div class="col-12 content text-center float-left">
+            <div class="posCuadro">
+                <p>Ahora, déjanos saber los siguientes datos:</p>
+                <div class="col-12 float-left information">
+                    <h5 class="col-7">Tu Factura</h5>
+                    <span class="price totalFactura">$</span>
+                    <hr>
+                    <div class="col-12 sin-padding float-left">
+                        <div class="row">
+                            <div class="col-6">
+                                <ul class="in-fraccion">
+                                    <li><label>Valor Total Factura</label></li>
+                                    <li><label>Valor Propina Factura</label></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <form class="result-fraccion">
+                                    <input class="totalFactura" type="text" placeholder="$0" disabled>
+                                    <input class="del-factura totalPropina" type="text" placeholder="$0" disabled>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 float-left information">
+                    <h5 class="col-7">Tu Mesa</h5>
+                    <span class="price">$98.600</span>
+                    <ul class="list-payup scrollApp" style="max-height:300px;">
+                        <li>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div>
+                                            <img class="img-pay" src="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Evelin Artwork</p>
+                                    </div>
+                                    <div class="col-3 sin-padding">
+                                        <div class="result-friend">
+                                            <div class="txt">
+                                                <span>$10.700</span>
+                                                <span>$1.000</span>
+                                                <span class="total">$14.700</span>
+                                            </div>
+                                            <div class="img-method">
+                                                <img class="img-pay" src="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div>
+                                            <img class="img-pay" src="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Emma Rodríguez</p>
+                                    </div>
+                                    <div class="col-3 sin-padding">
+                                        <div class="result-friend">
+                                            <div class="txt">
+                                                <span>$20.700</span>
+                                                <span>$1.500</span>
+                                                <span class="total">$21.500</span>
+                                            </div>
+                                            <div class="img-method">
+                                                <img class="img-pay" src="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="Queen">
+                                            <img class="img-pay" src="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Luisa Martín</p>
+                                    </div>
+                                    <div class="col-3 sin-padding">
+                                        <div class="result-friend">
+                                            <div class="txt">
+                                                <span>$10.700</span>
+                                                <span>$1.000</span>
+                                                <span class="total">$14.700</span>
+                                            </div>
+                                            <div class="img-method">
+                                                <img class="img-pay" src="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="col-12">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="Queen">
+                                            <img class="img-pay" src="">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Evelin Artwork</p>
+                                    </div>
+                                    <div class="col-3 sin-padding">
+                                        <div class="result-friend">
+                                            <div class="txt">
+                                                <span>$10.700</span>
+                                                <span>$1.000</span>
+                                                <span class="total">$14.700</span>
+                                            </div>
+                                            <div class="img-method">
+                                                <img class="img-pay" src="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="./src/navigation.js"></script>
+</body>
+</html>
+
+<!-- <form>
+    <label for="name">¿Cuál es tu nombre?</label>
+    <input type="text" name="name" placeholder="Tu Nombre" id="">
+    <fieldset>
+        <legend>Escoge un ávatar para identificarte:</legend>
+        
+        <div>
+            <input type="radio" id="1" name="avatar" value="avatar1" />
+            <label for="1">Avatar1</label>
+    
+            <input type="radio" id="2" name="avatar" value="avatar2" />
+            <label for="2">Avatar2</label>
+    
+            <input type="radio" id="3" name="avatar" value="avatar3" />
+            <label for="3">Avatar3</label>
+            
+            <input type="radio" id="4" name="avatar" value="avatar4" />
+            <label for="4">Avatar4</label>
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>¿Cómo prefieres realizar tu pago hoy?</legend>
+        
+        <div>
+            <input type="radio" id="1" name="paymentMethod" value="Efectivo" />
+            <label for="paymentMethod">Efectivo</label>
+    
+            <input type="radio" id="2" name="paymentMethod" value="Tarjeta" />
+            <label for="paymentMethod">Tarjeta</label>
+    
+            <input type="radio" id="3" name="paymentMethod" value="Transferencia" />
+            <label for="paymentMethod">Transferencia</label>
+            
+            <input type="radio" id="4" name="paymentMethod" value="No Pagaré" />
+            <label for="paymentMethod">No Pagaré</label>
+        </div>
+    </fieldset>    
+</form> -->
